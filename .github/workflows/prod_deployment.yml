@@ -35,3 +35,10 @@ jobs:
         env:
           DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
           DATABRICKS_BUNDLE_ENV: prod
+      # ADD THIS STEP: Run the job immediately after deployment
+      - name: Run job after deployment
+        run: databricks bundle run bakehouse_data_refresh
+        working-directory: Bakehouse_analytics
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: prod
